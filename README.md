@@ -20,26 +20,34 @@ GUIDE ABOUT HOW TO COMMIT THE CODE
 1. Do not try to commit in the main branch, always work on the different branch (on your pr)
 2. Conventional Commit Message
 
-   i. feat: A new feature
+   
+i. feat: A new feature
             git commit -m "feat: Add user registration"
    
-  ii. fix: A bug fix
+   
+ii. fix: A bug fix
            git commit -m "fix: Resolve login issue"
+
       
- iii. docs: Documentation only changes
+iii. docs: Documentation only changes
             git commit -m "docs: Update README with usage instructions"
+
      
-  iv.  ui: Changes that don't affect the meaning of the code (white-space, formatting, etc)
+iv.  ui: Changes that don't affect the meaning of the code (white-space, formatting, etc)
           git commit -m "style: Remove trailing whitespace"
+
           
-   v. refactor: A code change that does not fix a bug or add a feature
+v. refactor: A code change that does not fix a bug or add a feature
                git commit -m "refactor: Rename function for better readability"
+
                
-  vi. perf: A code change that improves performance
+vi. perf: A code change that improves performance
             git commit -m "perf: Optimize database queries"
+
             
- vii. test: Adding missing tests or correcting existing tests
+vii. test: Adding missing tests or correcting existing tests
             git commit -m "test: Add unit tests for login component"
+
             
 viii. build: Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)
              git commit -m "build: Update build scripts"
