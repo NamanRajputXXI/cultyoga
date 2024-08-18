@@ -1,0 +1,27 @@
+[
+    {
+      "name": "Downward Dog",
+      "benefits": ["Stretches the hamstrings", "Strengthens the arms"],
+      "difficulty": "Intermediate",
+      "steps": ["Start on all fours", "Lift your hips up and back", "Press your heels towards the floor"]
+    },
+    {
+      "name": "Tree Pose",
+      "benefits": ["Improves balance", "Strengthens the legs"],
+      "difficulty": "Beginner",
+      "steps": ["Stand on one leg", "Place the sole of your other foot on your inner thigh", "Hold your hands together in front of your chest"]
+    },
+    {
+      "name": "Downward Dog",
+      "benefits": ["Stretches the hamstrings", "Strengthens the arms"],
+      "difficulty": "Intermediate",
+      "steps": ["Start on all fours", "Lift your hips up and back", "Press your heels towards the floor"]
+    },
+    {
+      "name": "Tree Pose",
+      "benefits": ["Improves balance", "Strengthens the legs"],
+      "difficulty": "Beginner",
+      "steps": ["Stand on one leg", "Place the sole of your other foot on your inner thigh", "Hold your hands together in front of your chest"]
+    }
+  ]
+  
