@@ -21,7 +21,7 @@ const importData = async () => {
     console.log("Data Imported!");
     process.exit();
   } catch (error) {
-    console.error("Error importing the data:", error);
+    console.error("Error importing data:", error);
     process.exit(1);
   }
 };
