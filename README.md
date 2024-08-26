@@ -11,7 +11,8 @@ HOW TO START THE PROJECT
 3. go th backend folder run - npm i on terminal
 4. to run the ui run - npm run dev on terminal
 5. to run the backend run - npm start on terminal
-6. before commiting code always do npm run build to check the production error then commit and push
+6. make your branch with specific name and create pr for you commits
+7. before commiting code always do npm run build to check the production error then commit and push
 
 GUIDE ABOUT HOW TO COMMIT THE CODE
 
