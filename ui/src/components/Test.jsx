@@ -13,8 +13,8 @@ const Test = () => {
   const dispatch = useDispatch();
 
   return (
-    <div className="App">
-      <h1>Count: {count}</h1>
+    <div>
+      <h1 className="text-6xl">Count: {count}</h1>
       <button onClick={() => dispatch(increment())}>Increment</button>
       <button onClick={() => dispatch(decrement())}>Decrement</button>
       <button onClick={() => dispatch(incrementByAmount(5))}>

@@ -3,7 +3,7 @@ import Test from "./components/Test";
 
 const App = () => {
   return (
-    <div>
+    <div className="h-10 w-10 bg-red-300">
       hello this is the cult yoga
       <div>
         <Test />
