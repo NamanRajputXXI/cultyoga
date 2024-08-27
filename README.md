@@ -4,6 +4,22 @@ Built on cutting-edge technologies like React.js for dynamic frontend experience
 
 This project isn't just about yoga; it's about empowering users with personalized health solutions. Whether you're a beginner exploring yoga benefits or someone seeking targeted therapeutic support, our app will guide you through every step, including video tutorials and progress tracking. Join us in creating a holistic wellness tool that merges ancient wisdom with modern technology for a healthier world.
 
+Why this Website/App
+
+1. Users can search for yoga poses tailored to their specific medical conditions or diseases. The app intelligently fetches and suggests yoga practices that address their health concerns.
+Detailed Yoga Pose Information:
+
+2. Users can find comprehensive guides on how to perform specific yoga poses, along with the associated benefits. This includes step-by-step instructions and videos to ensure proper practice.
+User Profiles and Yoga Journey:
+
+3. Users can create their own profiles on the platform, documenting their yoga journey. They can share their experiences, progress, and insights, allowing other users to read and get inspired.
+Online Yoga Instructor Sessions:
+
+4. The platform allows users to hire certified yoga instructors for personalized online sessions, ensuring professional guidance tailored to their needs.
+Comprehensive Yoga Knowledge:
+
+5. The app provides in-depth information about Ashtanga Yoga and other forms of yoga, educating users on the principles, history, and practices of these disciplines.
+
 HOW TO START THE PROJECT
 
 1. git clone https://github.com/NamanRajputXXI/cultyoga.git
