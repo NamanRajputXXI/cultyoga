@@ -17,7 +17,7 @@ app.use(cors());
 connectDB();
 
 // Routes
-app.use("/api/yogaPoses", yogaPosesRoutes);
+app.use("/api/yogaposes", yogaPosesRoutes);
 
 app.get("/", (req, res) => {
   res.send("Welcome to the Cult Yoga API");
