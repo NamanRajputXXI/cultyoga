@@ -10,6 +10,18 @@ const getAllYogaPoses = async (req, res) => {
   }
 };
 
-// controller to create the new yoga pose
+// controller to get single yoga pose by its id
+const getYogaPoseById = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const yogaPoseById = await YogaPose.findById(id);
+    if (!yogaPoseById) {
+      res.status(404).json({ message: "Yoga pose not found" });
+    }
+    res.send(yogaPoseById);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
 
-module.exports = { getAllYogaPoses };
+module.exports = { getAllYogaPoses, getYogaPoseById };
