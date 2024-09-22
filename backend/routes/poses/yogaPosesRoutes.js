@@ -2,9 +2,10 @@
 const express = require("express");
 const {
   getAllYogaPoses,
+} = require("../../controllers/yogaPoses/readController");
+const {
   createYogaPose,
 } = require("../../controllers/yogaPoses/createController");
-
 const {
   updateYogaPose,
 } = require("../../controllers/yogaPoses/updateController");
