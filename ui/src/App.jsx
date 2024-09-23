@@ -1,7 +1,11 @@
-import React from "react";
+import React from 'react'
+import Navbar from './components/global/Navbar'
+import Homepage from './pages/Homepage'
 
 const App = () => {
-  return <div>hello this is the cult yoga </div>;
-};
+  return (
+    <Homepage />
+  )
+}
 
-export default App;
+export default App
