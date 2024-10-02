@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import Footer from "../components/global/Footer";
 import Navbar from "../components/global/Navbar";
 import { Link } from "react-router-dom";
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 
 const Signup = () => {
+  const [showPassword, setShowPassword] = useState(false);
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
   return (
     <>
       <Navbar />
@@ -22,20 +27,6 @@ const Signup = () => {
             <form className="mt-8 w-full space-y-6" action="#" method="POST">
               <div className=" space-y-6 w-full">
                 <div className="w-full">
-                  <label htmlFor="name" className="sr-only">
-                    Name
-                  </label>
-                  <input
-                    id="name"
-                    name="name"
-                    type="text"
-                    autoComplete="name"
-                    required
-                    className="appearance-none relative block w-full px-3 py-2 border  border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                    placeholder="Enter your full name"
-                  />
-                </div>
-                <div className="w-full">
                   <label htmlFor="email-address" className="sr-only">
                     Email address
                   </label>
@@ -49,19 +40,31 @@ const Signup = () => {
                     placeholder="Enter your email"
                   />
                 </div>
-                <div>
+                <div className="relative">
                   <label htmlFor="password" className="sr-only">
                     Password
                   </label>
                   <input
                     id="password"
                     name="password"
-                    type="password"
+                    type={showPassword ? "text" : "password"}
                     autoComplete="current-password"
                     required
-                    className="appearance-none  relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                    className="appearance-none block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                     placeholder="Enter your password"
                   />
+                  {/* Eye Icon Button */}
+                  <button
+                    type="button"
+                    onClick={togglePasswordVisibility}
+                    className="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5"
+                  >
+                    {showPassword ? (
+                      <AiFillEyeInvisible className="h-5 w-5 text-gray-500" />
+                    ) : (
+                      <AiFillEye className="h-5 w-5 text-gray-500" />
+                    )}
+                  </button>
                 </div>
               </div>
 
@@ -94,7 +97,7 @@ const Signup = () => {
               <div>
                 <button
                   type="submit"
-                  className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+                  className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-smallButton hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
                 >
                   Sign up
                 </button>
