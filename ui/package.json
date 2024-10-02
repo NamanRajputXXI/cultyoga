@@ -10,10 +10,18 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^2.2.7",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.41",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+<<<<<<< HEAD
     "react-icons": "^5.3.0",
     "react-router-dom": "^6.26.2"
+=======
+    "react-redux": "^9.1.2",
+    "tailwindcss": "^3.4.10"
+>>>>>>> e553ee305e9ccec90ccd3438da31f5bdb75df149
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",

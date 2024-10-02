@@ -1,3 +1,11 @@
+<<<<<<< HEAD
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+=======
+/* src/index.css */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+>>>>>>> e553ee305e9ccec90ccd3438da31f5bdb75df149

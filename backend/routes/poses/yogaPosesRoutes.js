@@ -1,34 +1,28 @@
 // routes/yogaPoses.js
 const express = require("express");
-const YogaPose = require("../../models/YogaPoseModel");
+const {
+  getAllYogaPoses,
+  getYogaPoseById,
+} = require("../../controllers/yogaPoses/readController");
+const {
+  createYogaPose,
+} = require("../../controllers/yogaPoses/createController");
+const {
+  updateYogaPose,
+} = require("../../controllers/yogaPoses/updateController");
 
 const router = express.Router();
 
 // Route to get all yoga poses
-router.get("/", async (req, res) => {
-  try {
-    const yogaPoses = await YogaPose.find();
-    res.json(yogaPoses);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
+router.get("/", getAllYogaPoses);
+
+// Route to get single yoga pose by id
+router.get("/:id", getYogaPoseById);
 
 // Route to create a new yoga pose
-router.post("/", async (req, res) => {
-  const yogaPose = new YogaPose({
-    name: req.body.name,
-    benefits: req.body.benefits,
-    difficulty: req.body.difficulty,
-    steps: req.body.steps,
-  });
+router.post("/", createYogaPose);
 
-  try {
-    const newYogaPose = await yogaPose.save();
-    res.status(201).json(newYogaPose);
-  } catch (error) {
-    res.status(400).json({ message: error.message });
-  }
-});
+// Route to update the yoga pose
+router.put("/:id", updateYogaPose);
 
 module.exports = router;
