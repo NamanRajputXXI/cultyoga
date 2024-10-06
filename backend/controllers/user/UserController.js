@@ -2,7 +2,17 @@ const bcrypt = require("bcryptjs");
 const User = require("../../models/UserModel");
 const jwt = require("jsonwebtoken");
 
-// signup controller
+// find all users controller
+const allUsers = async (req, res) => {
+  try {
+    const users = await User.find().select("-password");
+    res.json(users);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// signup create controller
 const signup = async (req, res) => {
   const { name, email, password } = req.body;
   try {
@@ -54,4 +64,4 @@ const login = async (req, res) => {
   }
 };
 
-module.exports = { signup, login };
+module.exports = { signup, login, allUsers };
