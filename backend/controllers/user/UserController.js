@@ -29,7 +29,14 @@ const signup = async (req, res) => {
       password,
     });
     await user.save();
-    res.status(200).json({ message: "User Registered Succesfully" });
+
+    // Generate JWT token for the new user
+    const payload = { userId: user._id };
+    const token = jwt.sign(payload, process.env.JWT_SECRET, {
+      expiresIn: "50h",
+    });
+
+    res.status(200).json({ message: "User Registered Succesfully", token });
   } catch (err) {
     console.log(err.message);
     res.status(500).send("Server Error");
