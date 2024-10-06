@@ -1,11 +1,14 @@
-import React from 'react'
-import Navbar from './components/global/Navbar'
-import Homepage from './pages/Homepage'
+
+import React from "react";
+import AllRoutes from "./AllRoutes"; // Import your AllRoutes component
 
 const App = () => {
   return (
-    <Homepage />
-  )
-}
+    <div>
+      <AllRoutes />
+    </div>
+  );
+};
+
 
 export default App
