@@ -59,17 +59,16 @@ const Navbar = () => {
       {/* -------------------------Mobile Menu Slide-------------------------- */}
       <div
         ref={menuRef}
-        className={`bg-gray-300 p-5 fixed w-64 h-screen flex flex-col gap-8 top-0 transform transition-transform duration-500 ease-out ${
+        className={`bg-gray-300 z-[999999] p-5 fixed w-48 h-screen items-center justify-center flex flex-col gap-8 top-0 transform transition-transform duration-500 ease-out ${
           showMenu == "true" ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        <div className="flex justify-between w-full">
-          <h1 className="font-bold text-3xl">CultYoga</h1>
+        <div className="flex justify-center w-full">
           <div onClick={hideMenuFunction} className=" cursor-pointer">
             <RxCross1 className="text-4xl" />
           </div>
         </div>
-        <ul className="flex flex-col gap-8">
+        <ul className="flex items-center justify-center flex-col gap-8">
           <li className="font-semibold cursor-pointer">Home</li>
           <li className="font-semibold cursor-pointer">About</li>
           <li className="font-semibold cursor-pointer">Services</li>
@@ -77,9 +76,12 @@ const Navbar = () => {
           <li className="font-semibold cursor-pointer">Contact Us</li>
         </ul>
         <div>
-          <button className="text-xl text-white font-semibold bg-green-500 px-5 py-2 rounded-sm">
+          <Link
+            className="text-xl text-white font-semibold bg-green-500 px-5 py-2 rounded-sm"
+            to={"/login"}
+          >
             Log In
-          </button>
+          </Link>
         </div>
       </div>
     </nav>
