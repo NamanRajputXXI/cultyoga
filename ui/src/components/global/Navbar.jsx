@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { RxHamburgerMenu, RxCross1 } from "react-icons/rx";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [showMenu, setShowMenu] = useState("false");
@@ -43,9 +44,12 @@ const Navbar = () => {
           <li className="font-semibold cursor-pointer">Contact Us</li>
         </ul>
         <div className="hidden md:flex">
-          <button className="text-xl text-white font-semibold bg-green-500 px-5 py-1 rounded-md">
+          <Link
+            className="text-xl text-white font-semibold bg-green-500 px-5 py-1 rounded-md"
+            to={"/login"}
+          >
             Log In
-          </button>
+          </Link>
         </div>
         <div onClick={showMenuFunction} className="cursor-pointer  md:hidden">
           <RxHamburgerMenu className="text-4xl" />
