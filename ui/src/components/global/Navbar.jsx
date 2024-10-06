@@ -50,14 +50,14 @@ const Navbar = () => {
       </div>
 
       {/* -------------------------Mobile Menu Slide-------------------------- */}
-      <div ref={menuRef} className={`bg-gray-300 p-6 fixed w-64 h-screen flex flex-col gap-5 top-0 transform transition-transform duration-500 ease-out ${showMenu == 'true' ? 'translate-x-0' : '-translate-x-full'}`}>
+      <div ref={menuRef} className={`bg-gray-300 p-6 fixed w-64 h-screen flex flex-col gap-8 top-0 transform transition-transform duration-500 ease-out ${showMenu == 'true' ? 'translate-x-0' : '-translate-x-full'}`}>
         <div onClick={hideMenuFunction} className='absolute right-0 top-3 cursor-pointer'>
           <Icon icon="charm:cross" className='text-6xl' />
         </div>
         <div>
           <h1 className='font-bold text-3xl'>CultYog</h1>
         </div>
-        <ul className='flex flex-col gap-3'>
+        <ul className='flex flex-col gap-4'>
           <li className='font-semibold cursor-pointer'>Home</li>
           <li className='font-semibold cursor-pointer'>About</li>
           <li className='font-semibold cursor-pointer'>Services</li>
