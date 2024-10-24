@@ -8,8 +8,11 @@ export default {
         midButton: "#F97316", // Example orange-800 hex value
         smallButton: "#EF4444", // Example red-500 hex value
       },
+      fontFamily: {
+        dynaPuff: "DynaPuff, system-ui",
+        wenkai: "LXGW WenKai TC, cursive",
+      },
     },
   },
   plugins: [],
 };
-
