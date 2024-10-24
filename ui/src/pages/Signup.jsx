@@ -10,14 +10,15 @@ const Signup = () => {
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
+
   return (
     <>
       <Navbar />
       <div className="min-h-screen flex items-center justify-center">
-        <div className=" w-full justify-center p-5 sm:p-10 items-center h-full  flex  rounded-lg overflow-hidden">
-          <div className="w-[700px]  flex flex-col items-center justify-center  space-y-6">
+        <div className="w-full justify-center p-5 sm:p-10 items-center h-full flex rounded-lg overflow-hidden">
+          <div className="w-[700px] flex flex-col items-center justify-center space-y-6">
             <div>
-              <h2 className=" text-3xl font-extrabold text-gray-900">
+              <h2 className="text-3xl font-extrabold text-gray-900">
                 WELCOME BACK
               </h2>
               <p className="mt-2 text-sm text-gray-600">
@@ -25,7 +26,23 @@ const Signup = () => {
               </p>
             </div>
             <form className="mt-8 w-full space-y-6" action="#" method="POST">
-              <div className=" space-y-6 w-full">
+              <div className="space-y-6 w-full">
+                {/* Name Field */}
+                <div className="w-full">
+                  <label htmlFor="name" className="sr-only">
+                    Name
+                  </label>
+                  <input
+                    id="name"
+                    name="name"
+                    type="text"
+                    required
+                    className="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                    placeholder="Enter your name"
+                  />
+                </div>
+
+                {/* Email Field */}
                 <div className="w-full">
                   <label htmlFor="email-address" className="sr-only">
                     Email address
@@ -36,10 +53,12 @@ const Signup = () => {
                     type="email"
                     autoComplete="email"
                     required
-                    className="appearance-none relative block w-full px-3 py-2 border  border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                    className="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                     placeholder="Enter your email"
                   />
                 </div>
+
+                {/* Password Field */}
                 <div className="relative">
                   <label htmlFor="password" className="sr-only">
                     Password
@@ -53,7 +72,6 @@ const Signup = () => {
                     className="appearance-none block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                     placeholder="Enter your password"
                   />
-                  {/* Eye Icon Button */}
                   <button
                     type="button"
                     onClick={togglePasswordVisibility}
@@ -68,6 +86,7 @@ const Signup = () => {
                 </div>
               </div>
 
+              {/* Remember Me and Forgot Password */}
               <div className="flex items-center justify-between">
                 <div className="flex items-center">
                   <input
@@ -94,6 +113,7 @@ const Signup = () => {
                 </div>
               </div>
 
+              {/* Submit Button */}
               <div>
                 <button
                   type="submit"
@@ -104,6 +124,7 @@ const Signup = () => {
               </div>
             </form>
 
+            {/* Google Sign-up */}
             <div className="mt-6">
               <div className="relative">
                 <div className="absolute inset-0 flex items-center">
@@ -125,8 +146,9 @@ const Signup = () => {
               </div>
             </div>
 
+            {/* Redirect to Login */}
             <p className="mt-2 text-center text-sm text-gray-600">
-              Login?{" "}
+              Already have an account?{" "}
               <Link
                 to="/login"
                 className="font-medium text-indigo-600 hover:text-indigo-500"
