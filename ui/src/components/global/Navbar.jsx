@@ -32,9 +32,11 @@ const Navbar = () => {
 
   return (
     <nav className=" w-full">
-      <div className="p-5 flex justify-between items-center h-full">
+      <div className="py-5 sm:px-10 px-5 flex justify-between items-center h-full">
         <div>
-          <h1 className="font-bold text-3xl">CultYoga</h1>
+          <Link to={"/"} className=" font-dynaPuff text-3xl">
+            CultYoga
+          </Link>
         </div>
         <ul className="hidden md:flex gap-10">
           <li className="font-semibold cursor-pointer">
