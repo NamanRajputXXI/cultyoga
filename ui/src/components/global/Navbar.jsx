@@ -37,11 +37,21 @@ const Navbar = () => {
           <h1 className="font-bold text-3xl">CultYoga</h1>
         </div>
         <ul className="hidden md:flex gap-10">
-          <li className="font-semibold cursor-pointer">Home</li>
-          <li className="font-semibold cursor-pointer">About</li>
-          <li className="font-semibold cursor-pointer">Services</li>
-          <li className="font-semibold cursor-pointer">Products</li>
-          <li className="font-semibold cursor-pointer">Contact Us</li>
+          <li className="font-semibold cursor-pointer">
+            <Link to={"/"}>Home</Link>
+          </li>
+          <li className="font-semibold cursor-pointer">
+            <Link to={"/about"}>About</Link>
+          </li>
+          <li className="font-semibold cursor-pointer">
+            <Link to={"/services"}>Services</Link>
+          </li>
+          <li className="font-semibold cursor-pointer">
+            <Link to={"products"}>Products</Link>
+          </li>
+          <li className="font-semibold cursor-pointer">
+            <Link to={"/contact"}>Contact Us</Link>
+          </li>
         </ul>
         <div className="hidden md:flex">
           <Link
@@ -69,11 +79,21 @@ const Navbar = () => {
           </div>
         </div>
         <ul className="flex items-center justify-center flex-col gap-8">
-          <li className="font-semibold cursor-pointer">Home</li>
-          <li className="font-semibold cursor-pointer">About</li>
-          <li className="font-semibold cursor-pointer">Services</li>
-          <li className="font-semibold cursor-pointer">Products</li>
-          <li className="font-semibold cursor-pointer">Contact Us</li>
+          <li className="font-semibold cursor-pointer">
+            <Link to={"/"}>Home</Link>
+          </li>
+          <li className="font-semibold cursor-pointer">
+            <Link to={"/about"}>About</Link>
+          </li>
+          <li className="font-semibold cursor-pointer">
+            <Link to={"/services"}>Services</Link>
+          </li>
+          <li className="font-semibold cursor-pointer">
+            <Link to={"products"}>Products</Link>
+          </li>
+          <li className="font-semibold cursor-pointer">
+            <Link to={"/contact"}>Contact Us</Link>
+          </li>
         </ul>
         <div>
           <Link
