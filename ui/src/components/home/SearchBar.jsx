@@ -90,30 +90,34 @@ const SearchBar = () => {
           } pl-10 sm:px-12 focus:outline-none`}
         />
       </div>
-      {filterData.length > 0
-        ? filterData.map((item, i) => (
+      {filterData.length > 0 ? (
+        <div className="absolute w-full top-10 bg-white rounded-b-xl">
+          {filterData.map((item, i) => (
             <div
               key={i}
-              className={`w-full mt-2 h-fit absolute top-10 rounded-b-xl px-12 py-2 bg-white ${
-                highlightedIndex === i ? "bg-gray-400" : ""
+              className={`w-full px-12 py-2 cursor-pointer  rounded-b-xl hover:bg-gray-300 ${
+                highlightedIndex === i ? "bg-gray-300" : ""
               }`}
               onMouseEnter={() => setHighlightedIndex(i)}
               onClick={() => {
                 setInput(item.name);
                 setFilterData([]);
                 setHighlightedIndex(-1);
-                setSearchPerformed(false); // Reset the search state
+                setSearchPerformed(false);
               }}
             >
               <p>{item.name}</p>
             </div>
-          ))
-        : input !== "" &&
-          searchPerformed && ( // Only show "No data found" if search has been performed
-            <div className="w-full h-fit absolute top-10 rounded-b-xl px-12 py-2 bg-white">
-              <p>No data found</p>
-            </div>
-          )}
+          ))}
+        </div>
+      ) : (
+        input !== "" &&
+        searchPerformed && (
+          <div className="absolute w-full top-10 bg-white rounded-b-xl px-12 py-2">
+            <p>No data found</p>
+          </div>
+        )
+      )}
     </div>
   );
 };
