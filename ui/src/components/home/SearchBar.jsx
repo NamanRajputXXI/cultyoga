@@ -1,50 +1,50 @@
 import React, { useEffect, useRef, useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import { baseUrl } from "../../assets/baseUrl";
+
 const SearchBar = () => {
   const [input, setInput] = useState("");
   const [data, setData] = useState([]);
   const [filterData, setFilterData] = useState([]);
   const [highlightedIndex, setHighlightedIndex] = useState(-1);
-  const [searchPerformed, setSearchPerformed] = useState(false);
+  const [searchPerformed, setSearchPerformed] = useState(false); // Track if a search has been performed
   const inputRef = useRef(null);
 
-  // click function for the search button
+  // Click function for the search button
   const searchClick = () => {
     if (inputRef.current) {
       inputRef.current.focus();
     }
   };
 
-  // handleChange function for the input feild
+  // HandleChange function for the input field
   const handleChange = (e) => {
     setInput(e.target.value);
-    console.log(input);
     if (e.target.value === "") {
       setHighlightedIndex(-1);
       setFilterData([]);
+      setSearchPerformed(false); // Reset when input is cleared
     } else {
-      const filteredData = data.filter((item, i) =>
+      const filteredData = data.filter((item) =>
         item.name.toLowerCase().startsWith(e.target.value.toLowerCase())
       );
       setFilterData(filteredData);
-      setSearchPerformed(true);
+      setSearchPerformed(true); // Mark that a search has been performed
     }
   };
 
-  // fetch data from the api
+  // Fetch data from the API
   const fetchData = async () => {
     try {
       const response = await fetch(`${baseUrl}/yogaposes`);
       const data = await response.json();
       setData(data);
-      console.log(data);
     } catch (err) {
       console.log("Not able to fetch", err);
     }
   };
 
-  // handle key down for the keyboard navigation
+  // Handle key down for keyboard navigation
   const handleKeyDown = (e) => {
     if (e.key === "ArrowDown") {
       e.preventDefault(); // Prevent scrolling
@@ -62,19 +62,19 @@ const SearchBar = () => {
         setInput(selectedItem.name); // Set input to the selected item's name
         setFilterData([]); // Clear the filtered data
         setHighlightedIndex(-1); // Reset highlighted index
-        setSearchPerformed(false); // when hit enter it means search is performed
+        setSearchPerformed(false); // Reset the search state
       }
     }
   };
 
-  // fetch the data only one when component mount
+  // Fetch the data only once when component mounts
   useEffect(() => {
     fetchData();
   }, []);
 
   return (
-    <div className="flex bg-white rounded-xl  flex-col relative w-full ">
-      <div className="flex  w-full">
+    <div className="flex bg-white rounded-xl flex-col relative w-full">
+      <div className="flex w-full">
         <div className="absolute sm:top-[9px] top-[5px] left-1 sm:left-2">
           <CiSearch color="gray" size={30} onClick={searchClick} />
         </div>
@@ -85,31 +85,32 @@ const SearchBar = () => {
           type="text"
           value={input}
           placeholder="Search for yoga poses or disease"
-          className={`w-full sm:h-12 h-10  border-gray-300 ${
+          className={`w-full sm:h-12 h-10 border-gray-300 ${
             filterData.length === 0 ? "rounded-xl" : "rounded-t-xl"
-          }  pl-10 sm:px-12  focus:outline-none`}
+          } pl-10 sm:px-12 focus:outline-none`}
         />
       </div>
       {filterData.length > 0
         ? filterData.map((item, i) => (
             <div
-              key={i} // Adding a unique key is important for list items
+              key={i}
               className={`w-full mt-2 h-fit absolute top-10 rounded-b-xl px-12 py-2 bg-white ${
-                highlightedIndex === i ? "bg-gray-200" : ""
+                highlightedIndex === i ? "bg-gray-400" : ""
               }`}
-              onMouseEnter={() => setHighlightedIndex(i)} // Highlight on mouse hover
+              onMouseEnter={() => setHighlightedIndex(i)}
               onClick={() => {
-                setInput(item.name); // Set input to the selected item's name
-                setFilterData([]); // Clear the filtered data
-                setHighlightedIndex(-1); // Reset highlighted index
+                setInput(item.name);
+                setFilterData([]);
+                setHighlightedIndex(-1);
+                setSearchPerformed(false); // Reset the search state
               }}
             >
               <p>{item.name}</p>
             </div>
           ))
         : input !== "" &&
-          searchPerformed && (
-            <div className="w-full  h-fit absolute top-10 rounded-b-xl px-12 py-2 bg-white">
+          searchPerformed && ( // Only show "No data found" if search has been performed
+            <div className="w-full h-fit absolute top-10 rounded-b-xl px-12 py-2 bg-white">
               <p>No data found</p>
             </div>
           )}
