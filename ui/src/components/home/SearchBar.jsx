@@ -7,67 +7,72 @@ const SearchBar = () => {
   const [data, setData] = useState([]);
   const [filterData, setFilterData] = useState([]);
   const [highlightedIndex, setHighlightedIndex] = useState(-1);
-  const [searchPerformed, setSearchPerformed] = useState(false); // Track if a search has been performed
+  const [searchPerformed, setSearchPerformed] = useState(false);
   const inputRef = useRef(null);
 
-  // Click function for the search button
   const searchClick = () => {
     if (inputRef.current) {
       inputRef.current.focus();
     }
   };
 
-  // HandleChange function for the input field
   const handleChange = (e) => {
     setInput(e.target.value);
+    setHighlightedIndex(-1); // Reset highlight on input change
+
     if (e.target.value === "") {
-      setHighlightedIndex(-1);
       setFilterData([]);
-      setSearchPerformed(false); // Reset when input is cleared
+      setSearchPerformed(false);
     } else {
       const filteredData = data.filter((item) =>
         item.name.toLowerCase().startsWith(e.target.value.toLowerCase())
       );
       setFilterData(filteredData);
-      setSearchPerformed(true); // Mark that a search has been performed
+      setSearchPerformed(true);
     }
   };
 
-  // Fetch data from the API
   const fetchData = async () => {
     try {
-      const response = await fetch(`${baseUrl}/yogaposes`);
-      const data = await response.json();
-      setData(data);
+      const [yogaResponse, diseasesResponse] = await Promise.all([
+        fetch(`${baseUrl}/yogaposes`),
+        fetch(`${baseUrl}/diseases`),
+      ]);
+      const yogaData = await yogaResponse.json();
+      const diseasesData = await diseasesResponse.json();
+      const combinedData = [
+        ...yogaData.map((item) => ({ ...item, type: "yoga pose" })),
+        ...diseasesData.map((item) => ({ ...item, type: "disease" })),
+      ];
+
+      setData(combinedData);
     } catch (err) {
       console.log("Not able to fetch", err);
     }
   };
 
-  // Handle key down for keyboard navigation
   const handleKeyDown = (e) => {
     if (e.key === "ArrowDown") {
-      e.preventDefault(); // Prevent scrolling
+      e.preventDefault();
       setHighlightedIndex((prevIndex) =>
         prevIndex < filterData.length - 1 ? prevIndex + 1 : prevIndex
       );
     } else if (e.key === "ArrowUp") {
-      e.preventDefault(); // Prevent scrolling
+      e.preventDefault();
       setHighlightedIndex((prevIndex) =>
         prevIndex > 0 ? prevIndex - 1 : prevIndex
       );
     } else if (e.key === "Enter") {
       if (highlightedIndex >= 0) {
         const selectedItem = filterData[highlightedIndex];
-        setInput(selectedItem.name); // Set input to the selected item's name
-        setFilterData([]); // Clear the filtered data
-        setHighlightedIndex(-1); // Reset highlighted index
-        setSearchPerformed(false); // Reset the search state
+        setInput(selectedItem.name);
+        setFilterData([]);
+        setHighlightedIndex(-1);
+        setSearchPerformed(false);
       }
     }
   };
 
-  // Fetch the data only once when component mounts
   useEffect(() => {
     fetchData();
   }, []);
@@ -95,9 +100,12 @@ const SearchBar = () => {
           {filterData.map((item, i) => (
             <div
               key={i}
-              className={`w-full px-12 py-2 cursor-pointer  rounded-b-xl hover:bg-gray-300 ${
+              className={`w-full px-12 py-2 cursor-pointer hover:bg-gray-300 ${
                 highlightedIndex === i ? "bg-gray-300" : ""
-              }`}
+              } ${
+                i === filterData.length - 1 ? "rounded-b-xl" : "" // Apply rounded-b-xl to the last item
+              }
+               `}
               onMouseEnter={() => setHighlightedIndex(i)}
               onClick={() => {
                 setInput(item.name);
