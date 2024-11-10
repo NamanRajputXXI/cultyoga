@@ -2,14 +2,13 @@ import React from "react";
 import Navbar from "../components/global/Navbar";
 import Footer from "../components/global/Footer";
 
-const About = () => {
+const Poses = () => {
   return (
-    <>
+    <div>
       <Navbar />
-      About
       <Footer />
-    </>
+    </div>
   );
 };
 
-export default About;
+export default Poses;
