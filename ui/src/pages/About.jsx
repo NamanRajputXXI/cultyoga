@@ -10,7 +10,7 @@ const About = () => {
       <section className="py-10 md:py-20 relative z-0 b">
         <div className="px-5 sm:px-10 relative text-center">
           <h1 className="max-w-2xl mx-auto text-center font-manrope font-bold text-4xl text-gray-900 mb-5 md:text-5xl md:leading-normal">
-            Elevate Your Wellness with{" "}
+            Elevate Your Wellness with
             <span className="text-teal-500">Cultyoga</span>
           </h1>
           <p className="max-w-sm mx-auto text-center text-base font-normal leading-7 text-gray-500 mb-9">
@@ -53,7 +53,7 @@ const About = () => {
             <div className="lg:pr-24 flex items-center">
               <div className="data w-full">
                 <img
-                  src="/Images/about1.jpg"
+                  src="/Images/about2.jpg"
                   alt="Cultyoga since 2024"
                   className="block rounded-md lg:hidden mb-9 mx-auto object-cover"
                 />
