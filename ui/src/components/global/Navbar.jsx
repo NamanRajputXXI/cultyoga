@@ -46,10 +46,10 @@ const Navbar = () => {
             <Link to={"/about"}>About</Link>
           </li>
           <li className="font-semibold cursor-pointer">
-            <Link to={"/services"}>Services</Link>
+            <Link to={"/Blogs"}>Blogs</Link>
           </li>
           <li className="font-semibold cursor-pointer">
-            <Link to={"products"}>Products</Link>
+            <Link to={"/poses"}>Poses</Link>
           </li>
           <li className="font-semibold cursor-pointer">
             <Link to={"/contact"}>Contact Us</Link>
@@ -57,7 +57,7 @@ const Navbar = () => {
         </ul>
         <div className="hidden md:flex">
           <Link
-            className="text-xl text-white font-semibold bg-green-500 px-5 py-1 rounded-md"
+            className="text-xl text-white font-semibold bg-teal-500 px-5 py-1 rounded-md"
             to={"/login"}
           >
             Log In
@@ -91,7 +91,7 @@ const Navbar = () => {
             <Link to={"/services"}>Services</Link>
           </li>
           <li className="font-semibold cursor-pointer">
-            <Link to={"products"}>Products</Link>
+            <Link to={"/poses"}>Poses</Link>
           </li>
           <li className="font-semibold cursor-pointer">
             <Link to={"/contact"}>Contact Us</Link>
@@ -99,7 +99,7 @@ const Navbar = () => {
         </ul>
         <div>
           <Link
-            className="text-xl text-white font-semibold bg-green-500 px-5 py-2 rounded-sm"
+            className="text-xl text-white font-semibold bg-teal-500 px-5 py-2 rounded-sm"
             to={"/login"}
           >
             Log In
