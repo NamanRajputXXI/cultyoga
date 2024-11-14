@@ -1,8 +1,12 @@
 const express = require("express");
-const { createDisease } = require("../../controllers/disease/createController");
+const {
+  createDisease,
+  createMinorDisease,
+} = require("../../controllers/disease/createController");
 const {
   getAllDiseases,
   getDiseaseById,
+  getAllMinorDiseases,
 } = require("../../controllers/disease/readController");
 const { updateDisease } = require("../../controllers/disease/updateController");
 const {
@@ -21,5 +25,12 @@ router.put("/disease/:id", updateDisease);
 
 // Delete routes
 router.delete("/disease/:id", deleteDiseaseById);
+
+// Routes for the minor disease
+//Get route for minor Disease
+router.get("/minorDisease", getAllMinorDiseases);
+
+// Post route for minor Disease
+router.post("/minorDisease", createMinorDisease);
 
 module.exports = router;

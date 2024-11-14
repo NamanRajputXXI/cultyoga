@@ -37,7 +37,8 @@ app.get("/", (req, res) => {
   res.send("Welcome to the Cult Yoga API");
 });
 
-//  setting up  multer MIDDLEWARE file upload
+//  setting up  multer MIDDLEWARE file upload in cloudinary
+//? will fix it later
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
