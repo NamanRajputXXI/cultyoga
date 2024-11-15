@@ -1,4 +1,5 @@
 const Disease = require("../../models/DiseaseModel");
+const MajorDisease = require("../../models/MajorDisease");
 const MinorDiseases = require("../../models/MinorDisease");
 
 // Get all diseases
@@ -49,11 +50,12 @@ const getAllMinorDiseases = async (req, res) => {
     const minorDiseases = await MinorDiseases.find();
     res.json(minorDiseases);
   } catch (error) {
-    console.error("Error fetching diseases:", error);
+    console.error("Error fetching Minor diseases:", error);
     res.status(500).json({ message: error.message });
   }
 };
 
+// get minorDiseaseyID
 const getMinorDiseaseById = async (req, res) => {
   const { id } = req.params;
   try {
@@ -67,6 +69,8 @@ const getMinorDiseaseById = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
+
+// get disease by name
 const getMinorDiseaseByName = async (req, res) => {
   const { name } = req.params; // Get the name from the URL params
 
@@ -84,6 +88,49 @@ const getMinorDiseaseByName = async (req, res) => {
   }
 };
 
+// get controllers for the get all the major Disease
+
+const getAllMajorDisease = async (req, res) => {
+  try {
+    const majorDisease = await MajorDisease.find();
+    res.status(200).json(majorDisease);
+  } catch (err) {
+    console.error("Error fetching Major diseases:", error);
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// get major Disease by Id
+
+const getMajorDiseaseById = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const majorDiseaseId = await MajorDisease.findById(id);
+    if (!majorDiseaseId) {
+      res.status(404).json({ message: "Major Disease not found" });
+    }
+    res.status(200).json(majorDiseaseId);
+  } catch (err) {
+    console.log("error fetching disease by id ", err);
+    res.status(500).json({ message: err.message });
+  }
+};
+
+// get major Disease by Id
+const getMajorDiseaseByName = async (req, res) => {
+  const { name } = req.params;
+  try {
+    const majorDiseaseName = await MajorDisease.findOne({ name: name });
+    if (!majorDiseaseName) {
+      res.status(404).json({ message: "major disease not found" });
+    }
+    res.status(200).json(majorDiseaseName);
+  } catch (err) {
+    console.log("Error fetching major disease by name", err);
+    res.status(500).json({ message: err.message });
+  }
+};
+
 // Get disease by disease name
 module.exports = {
   getDiseaseById,
@@ -92,4 +139,7 @@ module.exports = {
   getAllMinorDiseases,
   getMinorDiseaseById,
   getMinorDiseaseByName,
+  getAllMajorDisease,
+  getMajorDiseaseById,
+  getMajorDiseaseByName,
 };

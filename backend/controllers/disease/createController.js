@@ -1,4 +1,5 @@
 const Disease = require("../../models/DiseaseModel");
+const MajorDisease = require("../../models/MajorDisease");
 const MinorDisease = require("../../models/MinorDisease");
 
 const createDisease = async (req, res) => {
@@ -57,4 +58,37 @@ const createMinorDisease = async (req, res) => {
   }
 };
 
-module.exports = { createDisease, createMinorDisease };
+// create controller for the major Disease
+const createMajorDisease = async (req, res) => {
+  if (!req.body.name) {
+    return res.status(400).json({
+      message: "Name field is required",
+    });
+  }
+  const majorDisease = new MajorDisease({
+    name: req.body.name,
+    image: req.body.image,
+    images: req.body.images,
+    about: req.body.about,
+    symptoms: req.body.symptoms,
+    causes: req.body.causes,
+    poses: req.body.poses,
+    precautions: req.body.precautions,
+    dietarySuggestions: req.body.dietarySuggestions,
+    lifestyleChanges: req.body.lifestyleChanges,
+    additionalTips: req.body.additionalTips,
+  });
+
+  try {
+    const newMajorDisease = await majorDisease.save();
+    res.status(201).json(newMajorDisease);
+    console.log("Data send Successfully");
+  } catch (error) {
+    console.error(error); // Log the error for debugging
+    res.status(400).json({
+      message: error.message,
+    });
+  }
+};
+
+module.exports = { createDisease, createMinorDisease, createMajorDisease };
