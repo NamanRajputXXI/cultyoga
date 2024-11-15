@@ -7,6 +7,9 @@ const {
   getAllDiseases,
   getDiseaseById,
   getAllMinorDiseases,
+  getMinorDiseaseById,
+  getMinorDiseaseByName,
+  getDiseaseByName,
 } = require("../../controllers/disease/readController");
 const { updateDisease } = require("../../controllers/disease/updateController");
 const {
@@ -16,7 +19,8 @@ const router = express.Router();
 
 // Get routes
 router.get("/diseases", getAllDiseases);
-router.get("/disease/:id", getDiseaseById);
+router.get("/diseases", getAllDiseases);
+router.get("/diseasebyname/:name", getDiseaseByName);
 
 // Post routes
 router.post("/disease", createDisease);
@@ -29,6 +33,8 @@ router.delete("/disease/:id", deleteDiseaseById);
 // Routes for the minor disease
 //Get route for minor Disease
 router.get("/minorDisease", getAllMinorDiseases);
+router.get("/minorDisease/:id", getMinorDiseaseById);
+router.get("/minorDiseasebyname/:name", getMinorDiseaseByName);
 
 // Post route for minor Disease
 router.post("/minorDisease", createMinorDisease);
