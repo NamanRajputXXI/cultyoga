@@ -15,9 +15,15 @@ const {
   getMajorDiseaseById,
   getMajorDiseaseByName,
 } = require("../../controllers/disease/readController");
-const { updateDisease } = require("../../controllers/disease/updateController");
+const {
+  updateDisease,
+  updateMinorDiseaseById,
+  updateMajorDiseaseById,
+} = require("../../controllers/disease/updateController");
 const {
   deleteDiseaseById,
+  deleteMinorDiseaseByID,
+  deleteMajorDiseaseByID,
 } = require("../../controllers/disease/deleteController");
 const router = express.Router();
 
@@ -43,6 +49,12 @@ router.get("/minorDiseasebyname/:name", getMinorDiseaseByName);
 // Post route for minor Disease
 router.post("/minorDisease", createMinorDisease);
 
+// Delete router for the minor Disease
+router.delete("/minorDisease/:id", deleteMinorDiseaseByID);
+
+// update router of the minor Disease
+router.put("/minorDisease/:id", updateMinorDiseaseById);
+
 // Routes for the major Disease
 
 // get all data from get route for major disease
@@ -55,5 +67,11 @@ router.get("/majorDisease/:id", getMajorDiseaseById);
 router.get("/majorDiseasebyname/:name", getMajorDiseaseByName);
 // Post route for the major Disease
 router.post("/majorDisease", createMajorDisease);
+
+// Delete router for the major Disease
+router.delete("/majorDisease/:id", deleteMajorDiseaseByID);
+
+// update router of the major Disease
+router.put("/majorDisease/:id", updateMajorDiseaseById);
 
 module.exports = router;
