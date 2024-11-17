@@ -36,7 +36,14 @@ const signup = async (req, res) => {
       expiresIn: "50h",
     });
 
-    res.status(200).json({ message: "User Registered Succesfully", token });
+    res
+      .status(200)
+      .json({
+        message: "User Registered Succesfully",
+        token,
+        name: name,
+        email: email,
+      });
   } catch (err) {
     console.log(err.message);
     res.status(500).json({

@@ -1,12 +1,15 @@
 import React, { useState } from "react";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import Footer from "../components/global/Footer";
 import Navbar from "../components/global/Navbar";
 import { Link } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+import { handleError, handleSuccess } from "../utils/AuthUtil";
 
 const Signup = () => {
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -19,6 +22,9 @@ const Signup = () => {
   const handleSignupForm = async (e) => {
     e.preventDefault();
     console.log("Sending signup data:", { name, email, password }); // Log form data
+    if (!name || !email || !password) {
+      return handleError("All Fields are required");
+    }
     try {
       const response = await fetch(
         "https://cultyogabackend.vercel.app/api/signup",
@@ -27,23 +33,37 @@ const Signup = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ name, email, password }),
+          body: JSON.stringify({
+            name: name,
+            email: email,
+            password: password,
+          }),
         }
       );
+      const result = await response.json();
+      console.log(result);
 
       if (response.ok) {
-        const data = await response.json();
-        const token = data.token;
-
+        const token = result.token;
         // Store the token in local storage
         localStorage.setItem("token", token);
-        localStorage.setItem("userName", data.user.name);
+        localStorage.setItem("userName", result.name);
 
+        const { error } = result;
         console.log("Successfully signed up");
-        Navigate("/"); // After success, navigate to the homepage
+        if ((result.message = "User Registered Succesfully")) {
+          handleSuccess(result.message);
+          setTimeout(() => {
+            navigate("/"); // After success, navigate to the homepage
+          }, 2000);
+        }
       } else {
-        const errorData = await response.json(); // Attempt to parse error response
-        console.error("Signup failed with status:", response.status, errorData);
+        console.error(
+          "Signup failed with status:",
+          response.status,
+          result // Use the parsed error response
+        );
+        handleError(result.error.details[0].message || "Signup failed"); // Handle error appropriately
       }
     } catch (err) {
       console.error("Error during signup:", err); // Log the actual error
@@ -206,6 +226,8 @@ const Signup = () => {
           </div>
         </div>
       </div>
+      <ToastContainer />
+
       <Footer />
     </>
   );
