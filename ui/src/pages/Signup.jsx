@@ -22,9 +22,11 @@ const Signup = () => {
   const handleSignupForm = async (e) => {
     e.preventDefault();
     console.log("Sending signup data:", { name, email, password }); // Log form data
+
     if (!name || !email || !password) {
-      return handleError("All Fields are required");
+      return handleError("All fields are required.");
     }
+
     try {
       const response = await fetch(
         "https://cultyogabackend.vercel.app/api/signup",
@@ -34,39 +36,43 @@ const Signup = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            name: name,
-            email: email,
-            password: password,
+            name,
+            email,
+            password,
           }),
         }
       );
+
       const result = await response.json();
       console.log(result);
 
       if (response.ok) {
         const token = result.token;
-        // Store the token in local storage
         localStorage.setItem("token", token);
         localStorage.setItem("userName", result.name);
 
-        const { error } = result;
         console.log("Successfully signed up");
-        if ((result.message = "User Registered Succesfully")) {
-          handleSuccess(result.message);
-          setTimeout(() => {
-            navigate("/"); // After success, navigate to the homepage
-          }, 2000);
-        }
+        handleSuccess(result.message || "Signup successful!");
+
+        // Navigate to the homepage after showing success
+        setTimeout(() => {
+          navigate("/");
+        }, 2000);
       } else {
         console.error(
           "Signup failed with status:",
           response.status,
-          result // Use the parsed error response
+          result // Log parsed error response
         );
-        handleError(result.error.details[0].message || "Signup failed"); // Handle error appropriately
+        handleError(
+          result.error?.details?.[0]?.message ||
+            result.message ||
+            "Signup failed"
+        );
       }
     } catch (err) {
-      console.error("Error during signup:", err); // Log the actual error
+      console.error("Error during signup:", err);
+      handleError("An unexpected error occurred. Please try again later.");
     }
   };
 

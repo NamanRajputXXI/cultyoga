@@ -1,15 +1,23 @@
 import React, { useEffect, useRef, useState } from "react";
 import { RxHamburgerMenu, RxCross1 } from "react-icons/rx";
 import { Link } from "react-router-dom";
+import { handleSuccess } from "../../utils/AuthUtil";
+import { ToastContainer } from "react-toastify";
 
 const Navbar = () => {
+  const [loggedInUser, setLoggedInUser] = useState("");
   const [showMenu, setShowMenu] = useState("false");
+  const [showDropDown, setShowDropDown] = useState(false);
   const menuRef = useRef(null);
+  const dropDownRef = useRef(null);
 
   const showMenuFunction = () => {
     setShowMenu("true");
   };
 
+  useEffect(() => {
+    setLoggedInUser(localStorage.getItem("userName"));
+  });
   const hideMenuFunction = () => {
     setShowMenu("false");
   };
@@ -28,6 +36,12 @@ const Navbar = () => {
     };
   }, []);
 
+  const handleLogout = () => {
+    localStorage.removeItem("userName");
+    localStorage.removeItem("token");
+    setLoggedInUser(null);
+    handleSuccess("Logout Successfully");
+  };
   return (
     <nav className=" w-full">
       <div className="py-5 sm:px-10 px-5 flex justify-between items-center h-full">
@@ -54,12 +68,38 @@ const Navbar = () => {
           </li>
         </ul>
         <div className="hidden md:flex">
-          <Link
-            className="text-xl text-white font-semibold bg-green-500 px-5 py-1 rounded-md"
-            to={"/login"}
-          >
-            Log In
-          </Link>
+          {loggedInUser ? (
+            <div
+              className="text-xl text-white font-semibold bg-blue-500 px-5 py-1 rounded-md cursor-pointer"
+              onClick={() => setShowDropDown((prev) => !prev)}
+              ref={dropDownRef}
+            >
+              {loggedInUser}
+              {showDropDown && (
+                <div className="absolute top-12 right-0 bg-white shadow-md rounded-md flex flex-col py-2">
+                  <Link
+                    to={"/profile"}
+                    className="px-4 py-2 hover:bg-gray-200 text-gray-700 cursor-pointer"
+                  >
+                    Profile
+                  </Link>
+                  <button
+                    onClick={handleLogout}
+                    className="px-4 py-2 hover:bg-gray-200 text-gray-700 text-left"
+                  >
+                    Logout
+                  </button>
+                </div>
+              )}
+            </div>
+          ) : (
+            <Link
+              className="text-xl text-white font-semibold bg-green-500 px-5 py-1 rounded-md"
+              to={"/login"}
+            >
+              Log In
+            </Link>
+          )}
         </div>
         <div onClick={showMenuFunction} className="cursor-pointer  md:hidden">
           <RxHamburgerMenu className="text-4xl" />
@@ -96,14 +136,21 @@ const Navbar = () => {
           </li>
         </ul>
         <div>
-          <Link
-            className="text-xl text-white font-semibold bg-green-500 px-5 py-2 rounded-sm"
-            to={"/login"}
-          >
-            Log In
-          </Link>
+          {loggedInUser ? (
+            <span className="text-xl text-white font-semibold bg-blue-500 px-5 py-2 rounded-sm">
+              {loggedInUser}
+            </span>
+          ) : (
+            <Link
+              className="text-xl max-w-[250px] text-white font-semibold bg-green-500 px-5 py-2 rounded-sm"
+              to={"/login"}
+            >
+              Log In
+            </Link>
+          )}
         </div>
       </div>
+      <ToastContainer />
     </nav>
   );
 };
