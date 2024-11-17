@@ -19,7 +19,7 @@ const signup = async (req, res) => {
     // check if the user ALready exist
     let user = await User.findOne({ email });
     if (user) {
-      return res.status(400).json({ message: "User Already Exist" });
+      return res.status(409).json({ message: "User Already Exist" });
     }
 
     // create a new user if user in not there
@@ -39,19 +39,22 @@ const signup = async (req, res) => {
     res.status(200).json({ message: "User Registered Succesfully", token });
   } catch (err) {
     console.log(err.message);
-    res.status(500).send("Server Error");
+    res.status(500).json({
+      message: "Internal Server Error",
+      success: false,
+    });
   }
 };
 
 // login controller
 
 const login = async (req, res) => {
-  const { email, password } = req.body;
+  const { name, email, password } = req.body;
   try {
     // Check if user exists
     let user = await User.findOne({ email });
     if (!user) {
-      return res.status(400).json({ message: "Invalid Credentials" });
+      return res.status(403).json({ message: "Invalid Credentials" });
     }
     // check if the  password is correct
     const isPasswordMatch = await bcrypt.compare(password, user.password);
@@ -64,7 +67,13 @@ const login = async (req, res) => {
     const token = jwt.sign(payload, process.env.JWT_SECRET, {
       expiresIn: "100h",
     });
-    res.json({ token });
+    res.status(200).json({
+      message: "Login Success",
+      success: true,
+      token,
+      email,
+      name: user.name,
+    });
   } catch (err) {
     console.log(err.message);
     res.status(500).send("server error");

@@ -17,13 +17,11 @@ const Navbar = () => {
   const handleClickOutside = (event) => {
     if (menuRef.current && !menuRef.current.contains(event.target)) {
       hideMenuFunction();
-      console.log(menuRef.current);
+      // console.log(menuRef.current);
     }
   };
 
   useEffect(() => {
-    console.log("useEfffect is running");
-
     document.addEventListener("click", handleClickOutside, true);
     return () => {
       document.removeEventListener("click", handleClickOutside, true);
