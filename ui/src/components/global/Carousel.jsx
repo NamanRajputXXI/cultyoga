@@ -54,22 +54,19 @@ const Carousel = ({ heading, data }) => {
         {data.map((item, index) => (
           <div
             className="keen-slider__slide  bg-black text-white rounded-md  flex flex-col "
-            key={index}
+            key={item.id}
           >
-            <img
-              src="https://cdn.pixabay.com/photo/2020/06/17/10/32/back-pain-5308969_640.jpg"
-              alt=""
-            />
+            <img src={item.image} alt="" />
             <div className="flex flex-col gap-5 px-5 pt-5">
               <div className="flex justify-between gap-5">
                 <h5 className="font-semibold text-cyan-400 text-xl">
-                  {item.issue}
+                  {item.name}
                 </h5>
                 <button className="bg-white text-black w-fit h-fit rounded-md py-2 px-4">
                   cure
                 </button>
               </div>
-              <p>{item.description}</p>
+              <p>{item.about}</p>
             </div>
           </div>
         ))}
