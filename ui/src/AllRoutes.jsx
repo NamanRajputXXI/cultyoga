@@ -5,6 +5,8 @@ import About from "./pages/About";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import "react-toastify/ReactToastify.css";
+import ProtectedRoute from "./utils/ProtectedRoute";
+import Profile from "./pages/Profile";
 const AllRoutes = () => {
   return (
     <Router>
@@ -13,6 +15,14 @@ const AllRoutes = () => {
         <Route path="/about" element={<About />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </Router>
   );
