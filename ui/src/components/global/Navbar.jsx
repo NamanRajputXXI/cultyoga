@@ -58,10 +58,10 @@ const Navbar = () => {
             <Link to={"/about"}>About</Link>
           </li>
           <li className="font-semibold cursor-pointer">
-            <Link to={"/services"}>Services</Link>
+            <Link to={"/Blogs"}>Blogs</Link>
           </li>
           <li className="font-semibold cursor-pointer">
-            <Link to={"products"}>Products</Link>
+            <Link to={"/poses"}>Poses</Link>
           </li>
           <li className="font-semibold cursor-pointer">
             <Link to={"/contact"}>Contact Us</Link>
@@ -129,7 +129,7 @@ const Navbar = () => {
             <Link to={"/services"}>Services</Link>
           </li>
           <li className="font-semibold cursor-pointer">
-            <Link to={"products"}>Products</Link>
+            <Link to={"/poses"}>Poses</Link>
           </li>
           <li className="font-semibold cursor-pointer">
             <Link to={"/contact"}>Contact Us</Link>
