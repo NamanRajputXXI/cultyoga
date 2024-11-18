@@ -4,6 +4,9 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import "react-toastify/ReactToastify.css";
+import ProtectedRoute from "./utils/ProtectedRoute";
+import Profile from "./pages/Profile";
 import Contact from "./pages/Contact";
 import Blogs from "./pages/Blogs";
 import Poses from "./pages/Poses";
@@ -18,6 +21,14 @@ const AllRoutes = () => {
         <Route path="/poses" element={<Poses />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </Router>
   );
