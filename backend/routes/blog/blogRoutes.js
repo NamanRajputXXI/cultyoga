@@ -12,6 +12,6 @@ router.get("/blogs", getAllBlogs)
 router.get("/blog/:id", getBlogById)
 
 // Post routes
-router.get("/blog", createBlog);
+router.post("/blog", createBlog);
 
 module.exports = router;

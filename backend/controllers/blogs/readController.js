@@ -25,8 +25,8 @@ const getBlogById = async (req, res)=>{
         }
         res.send(blogId)
     }catch(error){
-        console.log("Error Fetching Disease", err);
-        res.status(500).json({message:err.message})
+        console.log("Error Fetching Disease", error);
+        res.status(500).json({message:error.message})
         
     }
 }
