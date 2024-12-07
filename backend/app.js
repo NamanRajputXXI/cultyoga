@@ -12,6 +12,7 @@ const connectDB = require("./dbConnect");
 const yogaPosesRoutes = require("./routes/poses/yogaPosesRoutes");
 const userRoutes = require("./routes/user/userRoutes");
 const diseaseRoutes = require("./routes/disease/diseaseRoute");
+const blogRoutes = require("./routes/blog/blogRoutes")
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,
   api_key: process.env.API_KEY,
@@ -32,6 +33,7 @@ connectDB();
 app.use("/api/yogaposes", yogaPosesRoutes);
 app.use("/api", userRoutes);
 app.use("/api", diseaseRoutes);
+app.use("/api", blogRoutes );
 
 app.get("/", (req, res) => {
   res.send("Welcome to the Cult Yoga API");
